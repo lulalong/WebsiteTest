@@ -261,12 +261,10 @@
     <p class="modal-note"><strong>Please note:</strong> UK standard post is untracked and uninsured. The buyer is responsible for any import duties or taxes in their country.</p>
 
     <div class="payment-btns">
-      <button class="pay-stripe" id="pay-stripe-btn">Pay with card</button>
-      <div class="pay-divider">or</div>
-      <button class="pay-paypal" id="pay-paypal-btn">Pay with PayPal</button>
+      <button class="pay-stripe" id="order-email-btn">Order by email</button>
     </div>
 
-    <p class="modal-disclaimer">You'll be taken to a secure checkout page. Your print is made to order &mdash; please allow 5&ndash;10 days before dispatch. All sales final on made-to-order prints.</p>
+    <p class="modal-disclaimer">Tap above and your email app will open with the print, size and shipping pre-filled &mdash; just send it to me. I'll reply to confirm availability and send a secure payment request you can pay by card or Apple&nbsp;/&nbsp;Google&nbsp;Pay. Prints are made to order, hand-signed, and dispatched within 5&ndash;10 days. Ordering more than one? Mention it and I'll combine your postage.</p>
   </div>
 </div>
 
@@ -338,21 +336,12 @@ const PRINTS = [
 ];
 
 /* ════════════════════════════════════════════════════════════════
-   PAYMENT LINKS — paste your Stripe / PayPal links here.
-   The key is "printId-SIZE", e.g. 'trent-reznor-A4'.
-   Create one link per print+size in your Stripe and PayPal
-   dashboards (with the right price), then paste the URLs below.
-   If a link is missing, the button opens a pre-filled email instead.
+   Orders are taken by email. The "Order by email" button opens the
+   customer's mail app with the print, size, shipping and total
+   pre-filled, addressed to you. You then send an Adfin payment
+   request to collect payment by card. Change the address below if
+   your contact email ever changes.
    ════════════════════════════════════════════════════════════════ */
-const STRIPE_LINKS = {
-  // 'mark-bowen-A4': 'https://buy.stripe.com/xxxx',
-  // 'trent-reznor-A4': 'https://buy.stripe.com/xxxx',
-  // 'dimebag-darrell-A4': 'https://buy.stripe.com/xxxx',
-};
-const PAYPAL_LINKS = {
-  // 'mark-bowen-A4': 'https://www.paypal.com/xxxx',
-};
-
 const EMAIL = 'LulaLongArt@gmail.com';
 
 /* ──────────────────────────────────────────────────────────────── */
@@ -438,7 +427,7 @@ document.addEventListener('DOMContentLoaded', function() {
             stockHtml +
           '</div>' +
           '<button class="buy-btn" data-print="' + print.id + '" ' + (available ? '' : 'disabled') + '>' +
-            (available ? 'Buy this print' : 'Sold out') +
+            (available ? 'Order this print' : 'Sold out') +
           '</button>' +
         '</div>';
 
@@ -505,21 +494,29 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSummary(print.sizes[selectedSize[currentPrintId]].price);
   });
 
-  function payKey() {
+  document.getElementById('order-email-btn').addEventListener('click', function() {
+    if (!currentPrintId) return;
     const print = PRINTS.find(function(p){ return p.id === currentPrintId; });
-    return currentPrintId + '-' + print.sizes[selectedSize[currentPrintId]].label;
-  }
-  document.getElementById('pay-stripe-btn').addEventListener('click', function() {
-    if (!currentPrintId) return;
-    const link = STRIPE_LINKS[payKey()];
-    if (link) { window.location.href = link; }
-    else { window.location.href = 'mailto:' + EMAIL + '?subject=Print order: ' + payKey(); }
-  });
-  document.getElementById('pay-paypal-btn').addEventListener('click', function() {
-    if (!currentPrintId) return;
-    const link = PAYPAL_LINKS[payKey()];
-    if (link) { window.location.href = link; }
-    else { window.location.href = 'mailto:' + EMAIL + '?subject=Print order: ' + payKey(); }
+    const size = print.sizes[selectedSize[currentPrintId]];
+    const sel = document.getElementById('shipping-select');
+    const shipLabel = sel.options[sel.selectedIndex].text.replace(/&amp;/g, '&');
+    const ship = parseInt(sel.options[sel.selectedIndex].dataset.cost);
+    const total = size.price + ship;
+
+    const subject = 'Print order: ' + print.title + ' (' + size.label + ')';
+    const body =
+      "Hi Lyndsey,\n\nI'd like to order the following print:\n\n" +
+      "Print: " + print.title + " — " + print.subtitle + "\n" +
+      "Size: " + size.label + "\n" +
+      "Price: £" + size.price + "\n" +
+      "Shipping: " + shipLabel + "\n" +
+      "Total: £" + total + "\n\n" +
+      "My delivery address:\n[please add your full postal address]\n\n" +
+      "Thank you!";
+
+    window.location.href = 'mailto:' + EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
   });
 
   const lightbox = document.getElementById('lightbox');
