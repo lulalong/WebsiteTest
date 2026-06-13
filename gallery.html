@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Gallery — Lula Long Art">
+<meta property="og:description" content="Full portfolio — coloured pencil and pastel portraits by Lula Long Art.">
+<meta property="og:url" content="https://lulalongart.com/gallery.html">
+<meta property="og:type" content="website">
+<meta name="description" content="Full gallery of coloured pencil and pastel portraits by Lula Long Art.">
+<title>Gallery &mdash; Lula Long Art</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+
+
+:root {
+  --black: #0a0807;
+  --deep: #110e0c;
+  --charcoal: #1c1714;
+  --warm-mid: #2e2723;
+  --ash: #4a3f38;
+  --muted: #7a6a60;
+  --pale: #c4b0a2;
+  --cream: #e8ddd4;
+  --gold: #c49a5a;
+  --gold-light: #d4aa6a;
+  --white: #f2ece6;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+
+/* Noise texture overlay — matches homepage */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.45;
+}
+
+/* ── NAV ── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 48px;
+  background: var(--black);
+  border-bottom: 1px solid var(--warm-mid);
+  transition: box-shadow 0.4s;
+}
+nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.8); }
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.nav-logo img {
+  width: 44px; height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 8px rgba(196,154,90,0.45));
+  transition: filter 0.3s;
+}
+.nav-logo:hover img { opacity: 0.85; }
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+.nav-logo-name {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cream);
+}
+.nav-logo-sub {
+  font-size: 0.92rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 4px;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.86rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 300;
+  transition: color 0.3s;
+  position: relative;
+  cursor: pointer;
+}
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a:hover::after { width: 100%; }
+.nav-links a.active { color: var(--gold); }
+.nav-links a.active::after { width: 100%; }
+
+.nav-burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+.nav-burger span {
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--pale);
+  transition: all 0.3s;
+}
+.nav-open .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+.nav-open .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+/* ── PAGE HEADER ── */
+.page-header {
+  margin-top: 73px;
+  padding: 72px 56px 48px;
+  background: var(--deep);
+  border-bottom: 1px solid var(--warm-mid);
+}
+.gold-rule {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.gold-rule::before {
+  content: '';
+  display: block;
+  width: 28px; height: 1px;
+  background: var(--gold);
+}
+.gold-rule span {
+  font-size: 1rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.page-header h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 18px;
+}
+.page-header h1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+.page-header p {
+  font-size: 1rem;
+  color: var(--pale);
+  max-width: 560px;
+  line-height: 1.9;
+}
+
+/* ── FILTERS ── */
+.filter-bar {
+  padding: 20px 56px;
+  background: var(--black);
+  border-bottom: 1px solid var(--warm-mid);
+}
+.filter-label {
+  font-size: 0.78rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--pale);
+  margin-bottom: 10px;
+  display: block;
+}
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.filter-btn {
+  background: none;
+  border: 1px solid var(--warm-mid);
+  color: var(--pale);
+  font-family: 'Jost', sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 7px 18px;
+  cursor: pointer;
+  transition: border-color 0.25s, color 0.25s, background 0.25s;
+}
+.filter-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+.filter-btn.active {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+}
+
+/* ── GALLERY GRID ── */
+.gallery-section {
+  padding: 56px 56px 100px;
+  background: var(--deep);
+}
+
+.gallery-grid {
+  columns: 3;
+  column-gap: 20px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.gallery-grid.loaded {
+  opacity: 1;
+}
+/* Each card */
+.gallery-card {
+  break-inside: avoid;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--charcoal);
+  border: 1px solid var(--warm-mid);
+  transition: border-color 0.35s;
+  display: inline-block;
+  width: 100%;
+}
+.gallery-card:hover {
+  border-color: var(--gold);
+}
+
+/* Image — natural height, no padding trick needed for masonry */
+.gallery-card-img {
+  position: relative;
+  width: 100%;
+  min-height: 200px;
+  background: var(--charcoal);
+  font-size: 0;
+  line-height: 0;
+}
+.gallery-card-img-inner {
+  width: 100%;
+  height: auto;
+  display: block;
+  vertical-align: bottom;
+  margin-bottom: -2px;
+  transition: transform 0.55s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/* Label overlay */
+.gallery-card-label {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 48px 18px 24px;
+  background: linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.5) 50%, transparent 100%);
+  pointer-events: none;
+}
+.gallery-card-label p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.25rem;
+  color: var(--white);
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.gallery-card-label span {
+  font-size: 0.75rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Info panel below image */
+.gallery-card-info {
+  padding: 16px 18px 20px;
+  border-top: 1px solid var(--warm-mid);
+}
+.gallery-card-info .narrative {
+  font-size: 0.92rem;
+  color: var(--pale);
+  line-height: 1.75;
+  font-weight: 300;
+}
+.gallery-card-info .meta {
+  margin-top: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+}
+.gallery-card-info .meta span {
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* Empty state */
+.gallery-empty {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 80px 0;
+  color: var(--muted);
+  font-size: 1rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ── BACK LINK ── */
+.back-bar {
+  padding: 32px 56px;
+  background: var(--black);
+  border-top: 1px solid var(--warm-mid);
+}
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.84rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--pale);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.back-link::before {
+  content: '';
+  display: block;
+  width: 24px; height: 1px;
+  background: var(--gold);
+  transition: width 0.3s;
+}
+.back-link:hover { color: var(--gold); }
+.back-link:hover::before { width: 36px; }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--deep);
+  padding: 36px 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  border-top: 1px solid var(--warm-mid);
+}
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  text-decoration: none;
+}
+.footer-logo img {
+  width: 32px; height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px rgba(196,154,90,0.35));
+}
+.footer-logo-name {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.92rem;
+  font-weight: 300;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--pale);
+}
+.footer-copy {
+  font-size: 0.84rem;
+  letter-spacing: 0.08em;
+  color: var(--ash);
+}
+.footer-social { display: flex; gap: 22px; }
+.footer-social a {
+  font-size: 0.84rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.3s;
+  cursor: pointer;
+}
+.footer-social a:hover { color: var(--gold); }
+
+/* ── LIGHTBOX ── */
+.lightbox-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.95);
+  cursor: zoom-out;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+}
+.lightbox-overlay.active { display: flex; }
+.lightbox-overlay img {
+  max-width: 88vw;
+  max-height: 82vh;
+  object-fit: contain;
+  box-shadow: 0 0 80px rgba(0,0,0,0.8);
+}
+.lightbox-caption {
+  text-align: center;
+  padding: 0 24px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.lightbox-caption p {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 4px;
+}
+.lightbox-caption span {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.lightbox-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  color: var(--white);
+  font-size: 1.6rem;
+  font-weight: 300;
+  cursor: pointer;
+  line-height: 1;
+  background: rgba(0,0,0,0.7);
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Jost', sans-serif;
+  transition: background 0.2s, color 0.2s;
+  z-index: 10;
+}
+.lightbox-close:hover { background: rgba(0,0,0,0.95); color: var(--gold); }
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: 1px solid var(--warm-mid);
+  color: var(--pale);
+  font-size: 1.4rem;
+  font-weight: 300;
+  padding: 12px 18px;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+  font-family: 'Jost', sans-serif;
+  line-height: 1;
+}
+.lightbox-nav:hover { border-color: var(--gold); color: var(--gold); }
+.lightbox-prev { left: 24px; }
+.lightbox-next { right: 24px; }
+
+/* ── FADE IN ANIMATION ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.gallery-card {
+  opacity: 0;
+  animation: fadeUp 0.55s ease forwards;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  nav { padding: 14px 24px; }
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    gap: 0;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--black);
+    border-bottom: 1px solid var(--warm-mid);
+    padding: 8px 0;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li a { display: block; padding: 12px 24px; border-bottom: 1px solid var(--warm-mid); font-size: 0.92rem; }
+  .nav-burger { display: flex; }
+  .page-header { padding: 56px 24px 36px; }
+  .filter-bar { padding: 20px 24px; }
+  .gallery-section { padding: 36px 24px 72px; }
+  .gallery-grid { columns: 2; column-gap: 16px; }
+  .back-bar { padding: 24px; }
+  footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  .lightbox-nav { display: none; }
+  .filter-btn {font-size: 0.72rem;padding: 5px 10px; }
+
+}
+@media (max-width: 480px) {
+  .gallery-grid { columns: 1; }
+}
+
+
+.gallery-loading {
+  text-align: center;
+  padding: 80px 0;
+  font-size: 0.84rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--muted);
+  animation: pulse 1.5s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" href="/">
+    <img src="images/logo.png" alt="Lula Long Art">
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Lula Long Art</span>
+      <span class="nav-logo-sub">Guernsey</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="gallery.html" class="active">Gallery</a></li>
+    <li><a href="shop.html">Prints</a></li>
+    <li><a href="index.html#about">About</a></li>
+    <li><a href="index.html#contact">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="gold-rule"><span>Full Portfolio</span></div>
+  <h1>The <em>Gallery</em></h1>
+  <p>Coloured pencil and soft pastel portraits.</p>
+  <p>People, pets, and the musicians who move us.</p>
+</div>
+
+<!-- Filter Bar — categories come from your data below -->
+<div class="filter-bar">
+  <span class="filter-label">Filter</span>
+  <div class="filter-buttons" id="filter-bar">
+    <button class="filter-btn active" data-filter="all">All</button>
+  </div>
+</div>
+
+<!-- Gallery Grid — populated from GALLERY_WORKS below -->
+<section class="gallery-section">
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Cards injected by JS -->
+  </div>
+</section>
+
+<div class="back-bar">
+  <a class="back-link" href="index.html">&larr; Back to homepage</a>
+</div>
+
+<footer>
+  <a class="footer-logo" href="index.html">
+    <img src="images/logo.png" alt="Lula Long Art">
+    <span class="footer-logo-name">Lula Long Art</span>
+  </a>
+  <p class="footer-copy">&copy; 2026 Lula Long Art &middot; Guernsey, Channel Islands</p>
+  <div class="footer-social">
+    <a id="footer-instagram">Instagram</a>
+  </div>
+</footer>
+
+<!-- Lightbox -->
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">&times;</button>
+  <button class="lightbox-nav lightbox-prev" id="lightbox-prev">&#8592;</button>
+  <img id="lightbox-img" src="" alt="">
+  <div class="lightbox-caption" id="lightbox-caption">
+    <p id="lightbox-title"></p>
+    <span id="lightbox-medium"></span>
+  </div>
+  <button class="lightbox-nav lightbox-next" id="lightbox-next">&#8594;</button>
+</div>
+
+<script>
+/* ============================================================
+   GALLERY WORKS
+   ============================================================
+   Each artwork is one object. Fields:
+     src       — path to image file
+     title     — artwork title
+     medium    — materials, e.g. "Coloured pencil · A3 Fabriano Black Black"
+     year      — year created
+     category  — used for filter buttons; use consistent names like
+                 "Music", "Portraits", "Animals", "Places"
+     narrative — optional sentence about the piece (or "" to leave blank)
+     aspect    — optional: "portrait" (tall), "landscape" (wide),
+                 or omit for square. Controls the card shape.
+   ============================================================ */
+
+var GALLERY_WORKS = [
+     {
+    src: "images/Trent.jpg",
+    title: "Trent Reznor",
+    medium: "Various forms of soft pastel · Fabriano Black Black",
+    year: "2026",
+    category: "Music",
+    narrative: "Industrial icon behind Nine Inch Nails.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Brand New.jpg",
+    title: "Brand New",
+    medium: "Pan pastel and pastel pencil · Pastelmat",
+    year: "2026",
+    category: "Animals",
+    narrative: "Shown in The Royal Golden Guernsey Goats Exhibition at the Art For Guernsey Gallery in May 2026.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/BowenSeries.jpg",
+    title: "The Magician",
+    medium: "Pastel pencil · Canson Mi Teintes Velvet",
+    year: "2026",
+    category: "Music",
+    narrative: "Mark Bowen, guitarist in IDLES and music Producer performs in Mexico, May 2026.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Jules.jpg",
+    title: "Julian Casablancas",
+    medium: "Coloured pencil and pan pastel · Canson Mi Teintes",
+    year: "2026",
+    category: "Music",
+    narrative: "King of melody, frontman of The Strokes and The Voidz.",
+    aspect: "portrait"
+  },
+  {
+    src: "images/Margot.jpg",
+    title: "Margot",
+    medium: "Coloured pencil & pan pastel · Pastelmat",
+    year: "2025",
+    category: "Animals",
+    narrative: "Our gorgeous old girl, this piece has pride of place on our Daughter's bedroom wall.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Damon.jpg",
+    title: "Damon Albarn",
+    medium: "Warm grey coloured pencil · Fabriano Artistico Aquarello",
+    year: "2025",
+    category: "Music",
+    narrative: "Prolific musical genius of Blur and Gorillaz fame.",
+    aspect: "portrait"
+  },
+  {
+    src: "images/Dad.jpg",
+    title: "Nev",
+    medium: "Coloured pencil · Pastelmat",
+    year: "2024",
+    category: "Portraits",
+    narrative: "Drawn following the loss of my lovely Dad. Winner of the Lee Baglin Memorial Trophy for General Excellence in Drawing, Guernsey Eisteddfod 2025.",
+    aspect: "portrait"
+  },
+  {
+    src: "images/Dimebag.JPG",
+    title: "Dimebag Darrell",
+    medium: "Pan pastel and coloured pencil · Canson Mi Teintes",
+    year: "2026",
+    category: "Music",
+    narrative: "Legendary Pantera guitarist.",
+    aspect: "landscape"
+  },
+  {
+    src: "images/JoeTalbot.jpg",
+    title: "Joe Talbot",
+    medium: "Luminance coloured pencil · Canson black drawing paper",
+    year: "2024",
+    category: "Music",
+    narrative: "Inspired by an IDLES festival performance. Joe's emotional vocals seem to make him whole.",
+    aspect: "portrait"
+  },
+    {
+    src: "images/Chilli.jpg",
+    title: "Chilli",
+    medium: "Coloured Pencil · Pastelmat",
+    year: "2025",
+    category: "Animals",
+    narrative: "Such a happy face! A pleasure to draw.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Graham Coxon.jpg",
+    title: "Graham Coxon",
+    medium: "Warm grey coloured pencil · Fabriano Artistico Aquarello",
+    year: "2025",
+    category: "Music",
+    narrative: "True guitar hero of Blur and The Waeve.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Basil.jpg",
+    title: "Basil",
+    medium: "Coloured pencil and pan pastel · Pastelmat",
+    year: "2024",
+    category: "Animals",
+    narrative: "This boy Basil has a proud and regal air about him.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Charlie.jpg",
+    title: "All Eyes On Me",
+    medium: "Coloured pencil · Pastel paper",
+    year: "2024",
+    category: "Music",
+    narrative: "Gurriers bassist glows under stage lighting.",
+    aspect: "portrait"
+  },  
+  {
+    src: "images/MilliePoppyBear.jpg",
+    title: "Millie, Poppy & Bear",
+    medium: "Pastel pencil over pan pastel · Pastelmat",
+    year: "2026",
+    category: "Animals",
+    narrative: "Memorial portrait compiled from separate photographs of these beloved dogs.",
+    aspect: "landscape"
+  },
+  {
+    src: "images/Resonance.jpg",
+    title: "Resonance",
+    medium: "Coloured pencil and pan pastel · Canson Mi Teintes",
+    year: "2025",
+    category: "Music",
+    narrative: "Frontman and friend performs in local venue, The Pit. Exhibited at the Guernsey Arts Open 2025 in the George Crossan Gallery.",
+    aspect: "landscape"
+  },
+  {
+    src: "images/Toby.jpg",
+    title: "Toby",
+    medium: "Pan pastel and pastel pencils · Pastelmat",
+    year: "2025",
+    category: "Animals",
+    narrative: "Pet portrait memorial for a dear friend.",
+    aspect: "landscape"
+  },
+  {
+    src: "images/Remnant.jpg",
+    title: "Remnant",
+    medium: "Coloured pencil & pan pastel · Fabriano Black Black",
+    year: "2025",
+    category: "Music",
+    narrative: "Ditz bassist on stage. Winner of the Lee Baglin Memorial Trophy for General Excellence in Drawing, Guernsey Eisteddfod 2026.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Ditz Anton.jpg",
+    title: "Momo",
+    medium: "Coloured pencil & pan pastel · Canson Mi Teintes",
+    year: "2025",
+    category: "Music",
+    narrative: "Ditz guitarist on stage.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Ditz Sam.jpg",
+    title: "Same Vans",
+    medium: "Coloured pencil & pan pastel · Canson Mi Teintes",
+    year: "2025",
+    category: "Music",
+    narrative: "Ditz drummer on stage.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Ditz Cal.jpg",
+    title: "I'm Just Cal",
+    medium: "Coloured pencil & pan pastel · Canson Mi Teintes",
+    year: "2025",
+    category: "Music",
+    narrative: "Ditz vocalist on stage.",
+    aspect: "portrait"
+  },
+  {
+    src: "images/Penny.jpg",
+    title: "Penny",
+    medium: "Coloured Pencil · Pastelmat",
+    year: "2025",
+    category: "Animals",
+    narrative: "Memorial portrait of this gorgeous girl, sorely missed.",
+    aspect: "landscape"
+  },  
+    {
+    src: "images/Joe and fan.jpg",
+    title: "All Is Love",
+    medium: "Graphite and pan pastel · Toned Industrial Grey",
+    year: "2025",
+    category: "Portraits",
+    narrative: "Capturing a precious fan memory of meeting Joe from IDLES.",
+    aspect: "landscape"
+  },
+  {
+    src: "images/Chino.jpg",
+    title: "Chino Moreno",
+    medium: "Coloured pencil & pan pastel · Fabriano Black Black",
+    year: "2026",
+    category: "Music",
+    narrative: "Powerful Deftones vocalist shines on stage.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Chequers.jpg",
+    title: "Chequers",
+    medium: "Pastel pencil and pan pastel · Pastelmat",
+    year: "2026",
+    category: "Animals",
+    narrative: "A gentle Guernsey donkey enjoying the sunshine.",
+    aspect: "portrait"
+  },
+   {
+    src: "images/Dick Salisbury.jpg",
+    title: "Dick",
+    medium: "Coloured pencil · Canson Mi Teintes",
+    year: "2026",
+    category: "Portraits",
+    narrative: "Memorial piece completed for a childhood friend.",
+    aspect: "portrait"
+  }
+];
+
+/* ============================================================
+   LAYOUT CODE
+   ============================================================ */
+
+document.addEventListener('DOMContentLoaded', function() {
+
+  // Nav scroll shadow
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('main-nav');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  // Mobile burger
+  var burger = document.getElementById('nav-burger');
+  if (burger) {
+    burger.addEventListener('click', function() {
+      document.getElementById('main-nav').classList.toggle('nav-open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+  }
+
+  // Footer Instagram
+  var fig = document.getElementById('footer-instagram');
+  if (fig) fig.addEventListener('click', function() { window.open('https://instagram.com/lulalongart','_blank'); });
+
+  // ── BUILD FILTER BUTTONS from unique categories ──
+  var categories = [];
+  GALLERY_WORKS.forEach(function(w) {
+    if (w.category && categories.indexOf(w.category) === -1) categories.push(w.category);
+  });
+  var filterBar = document.getElementById('filter-bar');
+  categories.forEach(function(cat) {
+    var btn = document.createElement('button');
+    btn.className = 'filter-btn';
+    btn.setAttribute('data-filter', cat);
+    btn.textContent = cat;
+    filterBar.appendChild(btn);
+  });
+
+  // ── BUILD GALLERY CARDS ──
+  var grid = document.getElementById('gallery-grid');
+  var currentFilter = 'all';
+  var currentLightboxIdx = 0;
+  var visibleWorks = [];
+
+  function buildCards(filter) {
+    // Reset grid and remove any existing loader
+    grid.innerHTML = '';
+    grid.classList.remove('loaded');
+    var existingLoader = document.getElementById('gallery-loader');
+    if (existingLoader) existingLoader.remove();
+
+    // Show loading message
+    var loader = document.createElement('div');
+    loader.className = 'gallery-loading';
+    loader.id = 'gallery-loader';
+    loader.textContent = 'Loading images';
+    grid.parentNode.insertBefore(loader, grid);
+
+    visibleWorks = GALLERY_WORKS.filter(function(w) {
+      return filter === 'all' || w.category === filter;
+    });
+
+    if (visibleWorks.length === 0) {
+      var empty = document.createElement('div');
+      empty.className = 'gallery-empty';
+      empty.textContent = 'No works in this category yet.';
+      grid.appendChild(empty);
+      loader.remove();
+      grid.classList.add('loaded');
+      return;
+    }
+
+    visibleWorks.forEach(function(work, idx) {
+      var card = document.createElement('div');
+      card.className = 'gallery-card';
+      card.style.animationDelay = (idx * 0.06) + 's';
+
+      var narrativeHTML = work.narrative
+        ? '<p class="narrative">' + work.narrative + '</p>'
+        : '';
+
+      card.innerHTML =
+        '<div class="gallery-card-img">' +
+         '<img class="gallery-card-img-inner" src="' + work.src + '" alt="' + work.title + '">' +
+          '<div class="gallery-card-label">' +
+            '<p>' + work.title + '</p>' +
+            '<span>' + work.category + (work.year ? ' &middot; ' + work.year : '') + '</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="gallery-card-info">' +
+          narrativeHTML +
+          '<div class="meta">' +
+            '<span>' + work.medium + '</span>' +
+          '</div>' +
+        '</div>';
+
+      card.addEventListener('click', function() { openLightbox(idx); });
+      grid.appendChild(card);
+    });
+
+    // Wait for all images then fade in
+    var images = grid.querySelectorAll('img');
+    var total = images.length;
+    var loaded = 0;
+
+function onImageSettled() {
+  loaded++;
+  if (loaded === total) {
+    setTimeout(function() {
+      var l = document.getElementById('gallery-loader');
+      if (l) l.remove();
+      grid.classList.add('loaded');
+    }, 80);
+  }
+}
+
+    if (total === 0) {
+      loader.remove();
+      grid.classList.add('loaded');
+      return;
+    }
+
+    images.forEach(function(img) {
+      if (img.complete) {
+        onImageSettled();
+      } else {
+        img.addEventListener('load', onImageSettled);
+        img.addEventListener('error', onImageSettled);
+      }
+    });
+  }
+
+  // ── FILTER CLICK HANDLER ──
+  filterBar.addEventListener('click', function(e) {
+    if (!e.target.classList.contains('filter-btn')) return;
+    document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+    e.target.classList.add('active');
+    currentFilter = e.target.getAttribute('data-filter');
+    buildCards(currentFilter);
+  });
+
+  // Initial build
+  buildCards('all');
+
+  // ── LIGHTBOX ──
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxTitle = document.getElementById('lightbox-title');
+  var lightboxMedium = document.getElementById('lightbox-medium');
+  var lightboxClose = document.getElementById('lightbox-close');
+  var lightboxPrev = document.getElementById('lightbox-prev');
+  var lightboxNext = document.getElementById('lightbox-next');
+
+  function openLightbox(idx) {
+    currentLightboxIdx = idx;
+    var work = visibleWorks[idx];
+    lightboxImg.src = work.src;
+    lightboxImg.alt = work.title;
+    lightboxTitle.textContent = work.title;
+    lightboxMedium.textContent = work.medium + (work.year ? ' · ' + work.year : '');
+    lightbox.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  function prevImage() {
+    currentLightboxIdx = (currentLightboxIdx - 1 + visibleWorks.length) % visibleWorks.length;
+    openLightbox(currentLightboxIdx);
+  }
+
+  function nextImage() {
+    currentLightboxIdx = (currentLightboxIdx + 1) % visibleWorks.length;
+    openLightbox(currentLightboxIdx);
+  }
+
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightboxPrev) lightboxPrev.addEventListener('click', function(e) { e.stopPropagation(); prevImage(); });
+  if (lightboxNext) lightboxNext.addEventListener('click', function(e) { e.stopPropagation(); nextImage(); });
+  if (lightbox) lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+
+  document.addEventListener('keydown', function(e) {
+    if (!lightbox.classList.contains('active')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') prevImage();
+    if (e.key === 'ArrowRight') nextImage();
+  });
+
+});
+</script>
+</body>
+</html>

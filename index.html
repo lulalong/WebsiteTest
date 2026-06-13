@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:title" content="Lula Long Art">
+<meta property="og:description" content="Guernsey Portrait Artist">
+<meta property="og:image" content="images/Remnant.jpg">
+<meta property="og:url" content="https://lulalongart.com">
+<meta property="og:type" content="website">
+<meta name="description" content="Guernsey Portrait Artist — coloured pencil and pastel portraits by Lyndsey Longson">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Lula Long Art">
+<meta name="twitter:description" content="Guernsey Portrait Artist">
+<meta name="twitter:image" content="images/Remnant.jpg">
+<title>Lula Long Art &mdash; Guernsey</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+
+  :root {
+    --black: #0a0807; --deep: #110e0c; --charcoal: #1c1714; --warm-mid: #2e2723;
+    --ash: #4a3f38; --muted: #7a6a60; --pale: #c4b0a2; --cream: #e8ddd4;
+    --gold: #c49a5a; --gold-light: #d4aa6a; --white: #f2ece6;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--black); color: var(--cream); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.45; }
+
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: var(--black); border-bottom: 1px solid var(--warm-mid); transition: box-shadow 0.4s; }
+  nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.8); }
+  .nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; cursor: pointer; }
+  .nav-logo img { width: 44px; height: auto; object-fit: contain; transition: filter 0.3s; }
+  .nav-logo:hover img { opacity: 0.85; }
+  .nav-logo-text { display: flex; flex-direction: column; line-height: 1; }
+  .nav-logo-name { font-family: 'Jost', sans-serif; font-size: 0.95rem; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: var(--cream); }
+  .nav-logo-sub { font-size: 0.92rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-top: 4px; }
+  .nav-links { display: flex; gap: 36px; list-style: none; }
+  .nav-links a { color: var(--cream); text-decoration: none; font-size: 0.86rem; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 300; transition: color 0.3s; position: relative; cursor: pointer; }
+  .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+  .nav-burger span { display: block; width: 24px; height: 1px; background: var(--pale); transition: all 0.3s; }
+  .nav-open .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+  .nav-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .nav-open .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  .hero { min-height: calc(100vh - 73px); max-height: 100vh; margin-top: 73px; display: grid; grid-template-columns: 1fr 1fr; position: relative; overflow: hidden; }
+  .hero-left { display: flex; flex-direction: column; justify-content: center; padding: 80px 56px; position: relative; z-index: 2; }
+  .hero-eyebrow { font-size: 0.84rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; opacity: 0; animation: fadeUp 1s ease 0.3s forwards; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(3rem, 5.5vw, 5.5rem); font-weight: 300; line-height: 0.95; color: var(--white); margin-bottom: 28px; opacity: 0; animation: fadeUp 1s ease 0.5s forwards; }
+  .title-light { color: var(--gold); filter: drop-shadow(0 0 18px rgba(196,154,90,0.6)); }
+  .title-dark { color: #000000 !important; font-style: italic; -webkit-text-stroke: 0.5px var(--gold-light); }
+  .hero-sub { font-size: 1rem; color: var(--pale); line-height: 1.9; max-width: 360px; margin-bottom: 48px; opacity: 0; animation: fadeUp 1s ease 0.7s forwards; }
+  .hero-cta { display: flex; gap: 16px; flex-wrap: wrap; opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
+  .btn-primary { display: inline-block; padding: 13px 32px; background: var(--gold); color: var(--black); font-size: 0.84rem; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; font-weight: 400; cursor: pointer; border: none; font-family: 'Jost', sans-serif; transition: background 0.3s, transform 0.2s; }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .btn-ghost { display: inline-block; padding: 13px 32px; border: 1px solid var(--ash); color: var(--pale); font-size: 0.84rem; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; font-weight: 300; cursor: pointer; background: none; font-family: 'Jost', sans-serif; transition: border-color 0.3s, color 0.3s; }
+  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+  .hero-right { position: relative; overflow: hidden; min-height: 400px; }
+  .hero-img-bg { position: absolute; inset: 0; background-image: url("images/Remnant.jpg"); background-size: cover; background-position: center 20%; }
+  .hero-right::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to right, var(--black) 0%, transparent 35%); pointer-events: none; }
+
+  section { padding: 100px 56px; position: relative; }
+  .gold-rule { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+  .gold-rule::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
+  .gold-rule span { font-size: 1rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 48px; }
+  .section-title em { font-style: italic; color: var(--gold-light); }
+
+  #portfolio { background: var(--deep); }
+  .portfolio-header { margin-bottom: 48px; }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 20px; }
+  .portfolio-item { position: relative; overflow: hidden; cursor: zoom-in; border-radius: 2px; isolation: isolate; }
+  .portfolio-item:nth-child(1) { grid-column: span 5; grid-row: span 2; }
+  .portfolio-item:nth-child(2) { grid-column: span 4; }
+  .portfolio-item:nth-child(3) { grid-column: span 3; }
+  .portfolio-item:nth-child(4) { grid-column: span 4; }
+  .portfolio-item:nth-child(5) { grid-column: span 3; }
+  .portfolio-item:nth-child(6) { grid-column: span 5; }
+  .portfolio-item:nth-child(7) { grid-column: span 7; }
+  .portfolio-item:nth-child(1) .portfolio-item-inner { padding-bottom: 108%; }
+  .portfolio-item:nth-child(2) .portfolio-item-inner,
+  .portfolio-item:nth-child(4) .portfolio-item-inner { padding-bottom: 82%; }
+  .portfolio-item:nth-child(3) .portfolio-item-inner,
+  .portfolio-item:nth-child(5) .portfolio-item-inner { padding-bottom: 100%; }
+  .portfolio-item:nth-child(6) .portfolio-item-inner { padding-bottom: 72%; }
+  .portfolio-item:nth-child(7) .portfolio-item-inner { padding-bottom: 55%; }
+  .artwork-placeholder { position: absolute; inset: 0; background-size: cover; background-position: center center; transition: transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94); transform-origin: center center; }
+  .portfolio-item:hover .artwork-placeholder { transform: scale(1.02); }
+  .artwork-label { opacity: 1; background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.4) 40%, transparent 65%); position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: flex-end; padding: 20px 20px 28px; z-index: 2; pointer-events: none; transform: none !important; }
+  .artwork-label p { color: var(--white) !important; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.2; margin-bottom: 4px; }
+  .artwork-label span { color: var(--gold) !important; font-size: 1rem; letter-spacing: 0.18em; text-transform: uppercase; }
+
+  /* View Full Gallery link */
+  .portfolio-footer { margin-top: 40px; text-align: center; }
+  .portfolio-footer a { display: inline-flex; align-items: center; gap: 12px; font-size: 0.84rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--pale); text-decoration: none; transition: color 0.3s; }
+  .portfolio-footer a::after { content: ''; display: block; width: 24px; height: 1px; background: var(--gold); transition: width 0.3s; }
+  .portfolio-footer a:hover { color: var(--gold); }
+  .portfolio-footer a:hover::after { width: 40px; }
+
+  #about { background: var(--black); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .about-img-placeholder { width: 100%; padding-bottom: 110%; position: relative; background-image: url("images/LyndseyGuernseyArtsOpen25.jpg"); background-size: cover; background-position: center 45%; }
+  .about-img-placeholder::before { content: ''; position: absolute; inset: -18px 18px 18px -18px; border: 1px solid var(--warm-mid); z-index: -1; }
+  .about-content p { color: var(--pale); font-size: 1rem; line-height: 1.9; margin-bottom: 18px; font-weight: 300; }
+  .about-content p strong { color: var(--white); font-weight: 400; }
+
+  #contact { background: var(--black); padding-bottom: 140px; }
+  .contact-simple { max-width: 600px; }
+  .contact-info h3 { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 300; color: var(--white); margin-bottom: 18px; line-height: 1.3; }
+  .contact-info p { color: var(--pale); font-size: 1rem; line-height: 1.8; margin-bottom: 36px; }
+  .contact-detail { display: flex; flex-direction: column; gap: 14px; }
+  .contact-detail a { font-size: 0.90rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cream); text-decoration: none; transition: color 0.3s; display: flex; align-items: center; gap: 12px; cursor: pointer; }
+   .contact-detail a::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--gold); box-shadow: 0 0 6px 2px rgba(196,154,90,0.5); flex-shrink: 0; }
+  .contact-detail a:hover { color: var(--gold); }
+
+  footer { background: var(--deep); padding: 36px 56px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-top: 1px solid var(--warm-mid); }
+  .footer-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; }
+  .footer-logo img { width: 32px; height: auto; object-fit: contain; filter: drop-shadow(0 0 5px rgba(196,154,90,0.35)); }
+  .footer-logo-name { font-family: 'Jost', sans-serif; font-size: 0.92rem; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pale); }
+  .footer-copy { font-size: 0.84rem; letter-spacing: 0.08em; color: var(--ash); }
+  .footer-social { display: flex; gap: 22px; }
+  .footer-social a { font-size: 0.84rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; cursor: pointer; }
+  .footer-social a:hover { color: var(--gold); }
+
+  .lightbox-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.93); cursor: zoom-out; align-items: center; justify-content: center; }
+  .lightbox-overlay.active { display: flex; }
+  .lightbox-overlay img { max-width: 92vw; max-height: 92vh; object-fit: contain; box-shadow: 0 0 80px rgba(0,0,0,0.8); }
+  .lightbox-close { position: absolute; top: 20px; right: 28px; color: var(--pale); font-size: 2rem; font-weight: 300; cursor: pointer; line-height: 1; background: none; border: none; font-family: 'Jost', sans-serif; transition: color 0.2s; }
+  .lightbox-close:hover { color: var(--gold); }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (max-width: 900px) {
+    nav { padding: 14px 24px; }
+    .nav-links { display: none; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: var(--black); border-bottom: 1px solid var(--warm-mid); padding: 8px 0; }
+    .nav-links.open { display: flex; }
+    .nav-links li a { display: block; padding: 12px 24px; border-bottom: 1px solid var(--warm-mid); font-size: 0.92rem; }
+    .nav-burger { display: flex; }
+    section { padding: 72px 24px; }
+    .hero { grid-template-columns: 1fr; min-height: auto; }
+    .hero-left { padding: 60px 24px 48px; width: 100%; }
+    .hero-right { display: none; }
+    .hero-cta { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .btn-primary, .btn-ghost { padding: 12px 16px; font-size: 0.72rem; text-align: center; width: 100%; }
+    .portfolio-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .portfolio-item:nth-child(1),
+    .portfolio-item:nth-child(2),
+    .portfolio-item:nth-child(3),
+    .portfolio-item:nth-child(4),
+    .portfolio-item:nth-child(5),
+    .portfolio-item:nth-child(6),
+    .portfolio-item:nth-child(7) { grid-column: span 1; grid-row: span 1; }
+    .portfolio-item:nth-child(1) .portfolio-item-inner,
+    .portfolio-item:nth-child(2) .portfolio-item-inner,
+    .portfolio-item:nth-child(3) .portfolio-item-inner,
+    .portfolio-item:nth-child(4) .portfolio-item-inner,
+    .portfolio-item:nth-child(5) .portfolio-item-inner,
+    .portfolio-item:nth-child(6) .portfolio-item-inner,
+    .portfolio-item:nth-child(7) .portfolio-item-inner { padding-bottom: 100%; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .about-img-placeholder { padding-bottom: 75%; }
+    .about-img-placeholder::before { display: none; }
+    .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+    footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+  }
+  @media (max-width: 480px) {
+    .portfolio-grid { grid-template-columns: 1fr; gap: 16px; }
+  }
+
+</style>
+</head>
+<body>
+
+<nav id="main-nav">
+  <a class="nav-logo" id="nav-logo-link">
+    <img src="images/logo.png" alt="Lula Long Art">
+    <div class="nav-logo-text">
+      <span class="nav-logo-name">Lula Long Art</span>
+      <span class="nav-logo-sub">Guernsey</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="gallery.html">Gallery</a></li>
+    <li><a href="shop.html">Prints</a></li>
+    <li><a data-target="about">About</a></li>
+    <li><a data-target="contact">Contact</a></li>
+  </ul>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="hero">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Coloured Pencil &amp; Pastel &middot; Guernsey</p>
+    <h1 class="hero-title"><span class="title-light">Light</span><br>drawn from<br><em class="title-dark">darkness.</em></h1>
+    <p class="hero-sub">From dramatic chiaroscuro portraits on dark paper to luminous, glowing pastels: people, pets, and the musicians who move us.</p>
+    <div class="hero-cta">
+      <a class="btn-primary" href="gallery.html">SEE GALLERY</a>
+      <button class="btn-ghost" data-target="contact">Contact Me</button>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-img-bg"></div>
+  </div>
+</div>
+
+<section id="portfolio">
+  <div class="portfolio-header">
+    <div class="gold-rule"><span>Highlights</span></div>
+    <h2 class="section-title">Featured <em>works.</em></h2>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-item" data-idx="0">
+      <div class="portfolio-item-inner">
+        <div class="artwork-placeholder"></div>
+        <div class="artwork-label"><p>Trent Reznor</p><span>Nine Inch Nails &middot; Musician portrait</span></div>
+      </div>
+    </div>
+    <div class="portfolio-item" data-idx="1">
+      <div class="portfolio-item-inner">
+        <div class="artwork-placeholder"></div>
+        <div class="artwork-label"><p>Margot</p><span>Pet Portrait</span></div>
+      </div>
+    </div>
+    <div class="portfolio-item" data-idx="2">
+      <div class="portfolio-item-inner">
+        <div class="artwork-placeholder"></div>
+        <div class="artwork-label"><p>Joe Talbot</p><span>IDLES &middot; Musician Portrait</span></div>
+      </div>
+    </div>
+    <div class="portfolio-item" data-idx="3">
+      <div class="portfolio-item-inner">
+        <div class="artwork-placeholder"></div>
+        <div class="artwork-label"><p>Nev</p><span>Memorial portrait &middot; Eisteddfod 2025</span></div>
+      </div>
+    </div>
+    <div class="portfolio-item" data-idx="4">
+      <div class="portfolio-item-inner">
+        <div class="artwork-placeholder"></div>
+        <div class="artwork-label"><p>Toby</p><span>Commission &middot; Pet Portrait</span></div>
+      </div>
+    </div>
+    <div class="portfolio-item" data-idx="5">
+      <div class="portfolio-item-inner">
+        <div class="artwork-placeholder"></div>
+        <div class="artwork-label"><p>Millie, Poppy &amp; Bear</p><span>Commission &middot; Pet Portrait</span></div>
+      </div>
+    </div>
+    <div class="portfolio-item" data-idx="6">
+      <div class="portfolio-item-inner">
+        <div class="artwork-placeholder"></div>
+        <div class="artwork-label"><p>Dimebag Darrell</p><span>Commission &middot; Musician Portrait</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="portfolio-footer">
+    <a href="gallery.html">View full gallery</a>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-grid">
+    <div>
+      <div class="about-img-placeholder"></div>
+    </div>
+    <div class="about-content">
+      <div class="gold-rule"><span>About</span></div>
+      <h2 class="section-title">The artist<br>behind the <em>work.</em></h2>
+      <p>I&rsquo;m Lyndsey, a portrait artist based in Guernsey, working in <strong>coloured pencils and soft pastels</strong>. Whether it&rsquo;s a dramatic figure emerging from deep shadow or a soft portrait glowing with warmth and light, every piece I make has that same quality: luminosity. Something that feels lit from within.</p>
+      <p>I work in layers, building up colour and character until it not only looks but <em>feels</em> like the subject.</p>
+      <p>A two-time winner of the <strong>Lee Baglin Memorial Trophy for General Excellence in Drawing</strong> at the Guernsey Eisteddfod, I continue to enter exhibitions across the island.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="contact-simple">
+    <div class="gold-rule"><span>Get in Touch</span></div>
+    <h2 class="section-title">Say <em>hello.</em></h2>
+    <p style="font-size:1rem;color:var(--pale);line-height:1.9;max-width:560px;margin-bottom:48px;">Whether you have a question about a piece, want to find out about availability, or just want to say hello, I&rsquo;d love to hear from you.</p>
+    <div class="contact-detail">
+      <a id="link-email">lulalongart@gmail.com</a>
+      <a id="link-instagram">Instagram: @LulaLongArt</a>
+    </div>
+  </div>
+</section>
+
+<div class="lightbox-overlay" id="lightbox">
+  <button class="lightbox-close" id="lightbox-close">&times;</button>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<footer>
+  <a class="footer-logo" id="footer-logo-link">
+    <img src="images/logo.png" alt="Lula Long Art">
+    <span class="footer-logo-name">Lula Long Art</span>
+  </a>
+  <p class="footer-copy">&copy; 2026 Lula Long Art &middot; Guernsey, Channel Islands</p>
+  <div class="footer-social">
+    <a id="footer-instagram">Instagram</a>
+  </div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+  window.addEventListener('scroll', function() {
+    var nav = document.getElementById('main-nav');
+    if (nav) nav.classList.toggle('scrolled', window.scrollY > 40);
+  });
+
+  function navTo(id) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    var nav = document.getElementById('main-nav');
+    var navH = nav ? nav.offsetHeight : 0;
+    window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - navH, behavior: 'smooth' });
+    var links = document.getElementById('nav-links');
+    var mainNav = document.getElementById('main-nav');
+    if (links) links.classList.remove('open');
+    if (mainNav) mainNav.classList.remove('nav-open');
+  }
+
+  function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+  var navLogo = document.getElementById('nav-logo-link');
+  if (navLogo) navLogo.addEventListener('click', scrollToTop);
+  var footerLogo = document.getElementById('footer-logo-link');
+  if (footerLogo) footerLogo.addEventListener('click', scrollToTop);
+
+  var burger = document.getElementById('nav-burger');
+  if (burger) {
+    burger.addEventListener('click', function() {
+      document.getElementById('main-nav').classList.toggle('nav-open');
+      document.getElementById('nav-links').classList.toggle('open');
+    });
+  }
+
+  document.querySelectorAll('a[data-target], button[data-target]').forEach(function(el) {
+    el.addEventListener('click', function() { navTo(el.getAttribute('data-target')); });
+  });
+
+  var ig = document.getElementById('link-instagram');
+  if (ig) ig.addEventListener('click', function() { window.open('https://instagram.com/lulalongart','_blank'); });
+  var em = document.getElementById('link-email');
+  if (em) em.addEventListener('click', function() { window.location.href='mailto:lulalongart@gmail.com'; });
+  var fig = document.getElementById('footer-instagram');
+  if (fig) fig.addEventListener('click', function() { window.open('https://instagram.com/lulalongart','_blank'); });
+
+  // ── PORTFOLIO IMAGES ──
+  // Update these paths once your images are in the images/ folder on GitHub
+  var IMGS = [
+    "images/Trent.jpg",
+    "images/Margot.jpg",
+    "images/JoeTalbot.jpg",
+    "images/Dad.jpg",
+    "images/Toby.jpg",
+    "images/MilliePoppyBear.jpg",
+    "images/Dimebag.JPG"
+  ];
+
+  var items = document.querySelectorAll('.portfolio-item');
+  items.forEach(function(item, idx) {
+    var ph = item.querySelector('.artwork-placeholder');
+    if (ph && IMGS[idx]) ph.style.backgroundImage = 'url(' + IMGS[idx] + ')';
+  });
+
+  // Lightbox
+  var lightbox = document.getElementById('lightbox');
+  var lightboxImg = document.getElementById('lightbox-img');
+  var lightboxClose = document.getElementById('lightbox-close');
+
+  items.forEach(function(item, idx) {
+    item.addEventListener('click', function() {
+      if (IMGS[idx]) {
+        lightboxImg.src = IMGS[idx];
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  });
+
+  function closeLightbox() {
+    lightbox.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+  if (lightbox) lightbox.addEventListener('click', function(e) { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeLightbox(); });
+
+});
+</script>
+</body>
+</html>
