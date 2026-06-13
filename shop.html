@@ -69,8 +69,10 @@
   .print-card:hover { border-color: var(--ash); }
   .print-card.is-sold-out { opacity: 0.72; }
 
-  .print-image { position: relative; width: 100%; padding-bottom: 78%; overflow: hidden; background: var(--charcoal); cursor: zoom-in; }
-  .print-image .img-fill { position: absolute; inset: 0; background-size: cover; background-position: center center; transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94); }
+  .print-image { position: relative; width: 100%; padding-bottom: 100%; overflow: hidden; background: var(--charcoal); cursor: zoom-in; }
+  .print-image.portrait { padding-bottom: 125%; }
+  .print-image.landscape { padding-bottom: 75%; }
+  .print-image .img-fill { position: absolute; inset: 0; background-size: contain; background-repeat: no-repeat; background-position: center center; transition: transform 0.65s cubic-bezier(0.25,0.46,0.45,0.94); }
   .print-card:hover .img-fill { transform: scale(1.03); }
   .print-image .no-image { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: var(--ash); font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase; }
 
@@ -303,6 +305,7 @@ const PRINTS = [
     subtitle: 'IDLES  ·  50% of profits to War Child',
     eyebrow: 'Charity limited edition',
     image: 'images/BowenSeries.jpg',
+    orientation: 'portrait',
     soldOut: false,
     sizes: [
       { label: 'A4', price: 50, runOf: 40, remaining: 40 }
@@ -314,6 +317,7 @@ const PRINTS = [
     subtitle: 'Nine Inch Nails',
     eyebrow: 'Musician portrait',
     image: 'images/Trent.jpg',
+    orientation: 'portrait',
     soldOut: false,
     sizes: [
       { label: 'A4', price: 40, runOf: 25, remaining: 25 }
@@ -325,6 +329,7 @@ const PRINTS = [
     subtitle: 'Pantera',
     eyebrow: 'Musician portrait',
     image: 'images/Dimebag.JPG',
+    orientation: 'landscape',
     soldOut: false,
     sizes: [
       { label: 'A4', price: 40, runOf: 25, remaining: 25 }
@@ -416,8 +421,9 @@ document.addEventListener('DOMContentLoaded', function() {
         stockHtml = '<span class="stock-note">Sold out</span>';
       }
 
+      const orient = print.orientation || 'landscape';
       card.innerHTML =
-        '<div class="print-image" data-print="' + print.id + '">' +
+        '<div class="print-image ' + orient + '" data-print="' + print.id + '">' +
           (cardSoldOut ? '<div class="sold-out-banner">Sold out</div>' : '') +
           imgHtml +
         '</div>' +
