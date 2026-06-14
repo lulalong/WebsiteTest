@@ -245,22 +245,17 @@
     <h2 id="modal-title"></h2>
     <p class="modal-meta" id="modal-meta"></p>
 
-    <div class="order-summary">
-      <div class="summary-row"><span>Print</span><span id="summary-print">&mdash;</span></div>
-      <div class="summary-row"><span>Shipping</span><span style="color:var(--muted)">added at checkout</span></div>
-    </div>
-
-    <p class="field-label" style="margin-bottom:8px;">Shipping rates</p>
+    <p class="field-label" style="margin-bottom:12px;">Choose your delivery region — postage is included in the price.</p>
     <div class="order-summary" style="margin-bottom:24px;">
-      <div class="summary-row"><span>UK standard / tracked</span><span>£5 / £10</span></div>
-      <div class="summary-row"><span>Europe tracked</span><span>£12</span></div>
-      <div class="summary-row"><span>US &amp; rest of world</span><span>£15</span></div>
+      <div class="summary-row"><span>United Kingdom</span><span id="summary-uk">&mdash;</span></div>
+      <div class="summary-row"><span>Europe &amp; rest of world</span><span id="summary-intl">&mdash;</span></div>
     </div>
 
-    <p class="modal-note"><strong>Please note:</strong> Shipping is added at the PayPal checkout based on your delivery address. The buyer is responsible for any import duties or taxes in their country.</p>
+    <p class="modal-note"><strong>Please note:</strong> Each print is tracked and signed for. The buyer is responsible for any import duties or taxes in their country.</p>
 
-    <div class="payment-btns">
-      <button class="pay-stripe" id="pay-now-btn">Pay now with PayPal</button>
+    <div class="payment-btns" style="display:flex; flex-direction:column; gap:12px;">
+      <button class="pay-stripe" id="pay-uk-btn">Buy &middot; UK delivery</button>
+      <button class="pay-stripe" id="pay-intl-btn" style="background:transparent; border:1px solid var(--gold); color:var(--gold);">Buy &middot; International delivery</button>
     </div>
 
     <p class="modal-disclaimer">You'll be taken to PayPal's secure checkout to pay by card, Apple&nbsp;Pay, Google&nbsp;Pay or PayPal. Prints are made to order, hand-signed, and dispatched within 5&ndash;10 days. Ordering more than one? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);">Email me</a> to combine postage.</p>
@@ -304,10 +299,9 @@ const PRINTS = [
     image: 'images/BowenSeries.jpg',
     orientation: 'portrait',
     soldOut: false,
-    paypal: '',   // ← paste Mark Bowen PayPal link here
-    sizes: [
-      { label: 'A4', price: 50, runOf: 30, remaining: 30 }
-    ]
+    runOf: 30, remaining: 30,
+    priceUK: 55,   paypalUK: '',     // ← paste Mark Bowen UK (£55) PayPal link here
+    priceIntl: 70, paypalIntl: ''    // ← paste Mark Bowen International (£70) PayPal link here
   },
   {
     id: 'trent-reznor',
@@ -317,10 +311,9 @@ const PRINTS = [
     image: 'images/Trent.jpg',
     orientation: 'portrait',
     soldOut: false,
-    paypal: 'https://www.paypal.com/ncp/payment/9YDCPPNQQHYXG',
-    sizes: [
-      { label: 'A4', price: 40, runOf: 25, remaining: 25 }
-    ]
+    runOf: 25, remaining: 25,
+    priceUK: 45,   paypalUK: '',     // ← paste Trent UK (£45) PayPal link here
+    priceIntl: 60, paypalIntl: ''    // ← paste Trent International (£60) PayPal link here
   },
   {
     id: 'dimebag-darrell',
@@ -330,10 +323,9 @@ const PRINTS = [
     image: 'images/Dimebag.JPG',
     orientation: 'landscape',
     soldOut: false,
-    paypal: '',   // ← paste Dimebag PayPal link here
-    sizes: [
-      { label: 'A4', price: 40, runOf: 25, remaining: 25 }
-    ]
+    runOf: 25, remaining: 25,
+    priceUK: 45,   paypalUK: '',     // ← paste Dimebag UK (£45) PayPal link here
+    priceIntl: 60, paypalIntl: ''    // ← paste Dimebag International (£60) PayPal link here
   }
 ];
 
@@ -350,7 +342,6 @@ const EMAIL = 'contact@lulalongart.com';
 
 document.addEventListener('DOMContentLoaded', function() {
 
-  const selectedSize = {};
   let currentPrintId = null;
 
   window.addEventListener('scroll', function() {
@@ -364,22 +355,15 @@ document.addEventListener('DOMContentLoaded', function() {
     window.open('https://instagram.com/lulalongart', '_blank');
   });
 
-  function isSizeAvailable(s) { return s.remaining > 0; }
-  function printHasStock(p) { return !p.soldOut && p.sizes.some(isSizeAvailable); }
+  function printHasStock(p) { return !p.soldOut && p.remaining > 0; }
 
   function renderCards() {
     const grid = document.getElementById('prints-grid');
     grid.innerHTML = '';
 
     PRINTS.forEach(function(print) {
-      if (!(print.id in selectedSize)) {
-        const firstAvail = print.sizes.findIndex(isSizeAvailable);
-        selectedSize[print.id] = firstAvail === -1 ? 0 : firstAvail;
-      }
-      const idx = selectedSize[print.id];
-      const size = print.sizes[idx];
-      const available = printHasStock(print) && isSizeAvailable(size);
-      const cardSoldOut = !printHasStock(print);
+      const available = printHasStock(print);
+      const cardSoldOut = !available;
 
       const card = document.createElement('div');
       card.className = 'print-card' + (cardSoldOut ? ' is-sold-out' : '');
@@ -389,26 +373,12 @@ document.addEventListener('DOMContentLoaded', function() {
           (print.focus ? 'background-position:' + print.focus + ';' : '') + '"></div>'
         : '<div class="no-image">Image coming soon</div>';
 
-      let sizeBlock;
-      if (print.sizes.length === 1) {
-        const s = print.sizes[0];
-        sizeBlock = '<p class="single-size">' + s.label +
-          '  &middot;  Limited edition of ' + s.runOf + '</p>';
-      } else {
-        const sizeBtns = print.sizes.map(function(s, i) {
-          const avail = isSizeAvailable(s) && !print.soldOut;
-          return '<button class="size-btn ' + (i === idx ? 'active' : '') + '" ' +
-                 'data-print="' + print.id + '" data-size="' + i + '" ' +
-                 (avail ? '' : 'disabled') + '>' +
-                 s.label + '<small>' + (avail ? '£' + s.price : 'Sold out') + '</small></button>';
-        }).join('');
-        sizeBlock = '<div class="size-selector">' + sizeBtns + '</div>';
-      }
+      const sizeBlock = '<p class="single-size">A4  &middot;  Limited edition of ' + print.runOf + '</p>';
 
       let stockHtml;
       if (available) {
-        const lowClass = size.remaining <= 5 ? ' low' : '';
-        stockHtml = '<span class="stock-note' + lowClass + '">' + size.remaining + ' of ' + size.runOf + ' remaining</span>';
+        const lowClass = print.remaining <= 5 ? ' low' : '';
+        stockHtml = '<span class="stock-note' + lowClass + '">' + print.remaining + ' of ' + print.runOf + ' remaining</span>';
       } else {
         stockHtml = '<span class="stock-note">Sold out</span>';
       }
@@ -425,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function() {
           '<p class="print-subtitle">' + print.subtitle + '</p>' +
           sizeBlock +
           '<div class="price-row">' +
-            '<span class="price">' + (available ? '£' + size.price : '—') + '</span>' +
+            '<span class="price">' + (available ? 'From £' + print.priceUK : '—') + '</span>' +
             stockHtml +
           '</div>' +
           '<button class="buy-btn" data-print="' + print.id + '" ' + (available ? '' : 'disabled') + '>' +
@@ -440,12 +410,6 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function attachListeners() {
-    document.querySelectorAll('.size-btn:not([disabled])').forEach(function(btn) {
-      btn.addEventListener('click', function() {
-        selectedSize[btn.dataset.print] = parseInt(btn.dataset.size);
-        renderCards();
-      });
-    });
     document.querySelectorAll('.buy-btn:not([disabled])').forEach(function(btn) {
       btn.addEventListener('click', function() { openModal(btn.dataset.print); });
     });
@@ -464,11 +428,13 @@ document.addEventListener('DOMContentLoaded', function() {
   function openModal(printId) {
     currentPrintId = printId;
     const print = PRINTS.find(function(p){ return p.id === printId; });
-    const size = print.sizes[selectedSize[printId]];
     document.getElementById('modal-title').textContent = print.title;
     document.getElementById('modal-meta').textContent =
-      size.label + ' · ' + print.subtitle + ' · Hand-signed limited edition';
-    document.getElementById('summary-print').textContent = '£' + size.price;
+      'A4 · ' + print.subtitle + ' · Hand-signed limited edition';
+    document.getElementById('summary-uk').textContent = '£' + print.priceUK;
+    document.getElementById('summary-intl').textContent = '£' + print.priceIntl;
+    document.getElementById('pay-uk-btn').innerHTML = 'Buy &middot; UK delivery &mdash; £' + print.priceUK;
+    document.getElementById('pay-intl-btn').innerHTML = 'Buy &middot; International &mdash; £' + print.priceIntl;
     document.getElementById('modal-overlay').classList.add('active');
     document.body.style.overflow = 'hidden';
     document.getElementById('modal-close').focus();
@@ -484,21 +450,28 @@ document.addEventListener('DOMContentLoaded', function() {
     if (e.target === document.getElementById('modal-overlay')) closeModal();
   });
 
-  document.getElementById('pay-now-btn').addEventListener('click', function() {
-    if (!currentPrintId) return;
-    const print = PRINTS.find(function(p){ return p.id === currentPrintId; });
-    if (print.paypal) {
-      window.open(print.paypal, '_blank', 'noopener');
+  function buyOrEmail(print, region) {
+    const price = region === 'UK' ? print.priceUK : print.priceIntl;
+    const link  = region === 'UK' ? print.paypalUK : print.paypalIntl;
+    if (link) {
+      window.open(link, '_blank', 'noopener');
       closeModal();
     } else {
-      // no link yet — fall back to email
-      const size = print.sizes[selectedSize[currentPrintId]];
-      const subject = 'Print order: ' + print.title + ' (' + size.label + ')';
+      const subject = 'Print order: ' + print.title + ' (A4, ' + region + ')';
       const body = "Hi Lyndsey,\n\nI'd like to order " + print.title +
-        " (" + size.label + ", £" + size.price + ").\n\nMy delivery address:\n[please add your full postal address]\n\nThank you!";
+        " (A4, " + region + " — £" + price + ").\n\nMy delivery address:\n[please add your full postal address]\n\nThank you!";
       window.location.href = 'mailto:' + EMAIL +
         '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
     }
+  }
+
+  document.getElementById('pay-uk-btn').addEventListener('click', function() {
+    if (!currentPrintId) return;
+    buyOrEmail(PRINTS.find(function(p){ return p.id === currentPrintId; }), 'UK');
+  });
+  document.getElementById('pay-intl-btn').addEventListener('click', function() {
+    if (!currentPrintId) return;
+    buyOrEmail(PRINTS.find(function(p){ return p.id === currentPrintId; }), 'INTL');
   });
 
   const lightbox = document.getElementById('lightbox');
