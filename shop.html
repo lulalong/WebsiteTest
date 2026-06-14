@@ -189,6 +189,7 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="shop.html" class="active">Prints</a></li>
+    <li><a href="commissions.html">Commissions</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
@@ -218,7 +219,7 @@
         <li>Europe &middot; &pound;12 tracked &amp; insured</li>
         <li>US &amp; rest of world &middot; &pound;15 tracked &amp; insured</li>
       </ul>
-      <p style="margin-top:14px;">Ordering more than one print? <a href="mailto:LulaLongArt@gmail.com" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);">Drop me an email</a> before you buy and I'll combine your postage.</p>
+      <p style="margin-top:14px;">Ordering more than one print? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);">Drop me an email</a> before you buy and I'll combine your postage.</p>
     </div>
     <div class="info-block">
       <h3>What you receive</h3>
@@ -231,7 +232,7 @@
     </div>
     <div class="info-block">
       <h3>Good to know</h3>
-      <p>Prints are made to order &mdash; please allow 5&ndash;10 days before dispatch. The buyer is responsible for any import duties or taxes that apply in their country. All sales are final on made-to-order prints.</p>
+      <p>Prints are made to order, so please allow 5&ndash;10 days before dispatch. The buyer is responsible for any import duties or taxes that apply in their country. All sales are final on made-to-order prints.</p>
       <p style="margin-top:14px;">The preview images on this page are intentionally low resolution to protect against copying. Your printed piece will be considerably crisper and richer in detail.</p>
     </div>
   </div>
@@ -244,27 +245,25 @@
     <h2 id="modal-title"></h2>
     <p class="modal-meta" id="modal-meta"></p>
 
-    <label class="field-label" for="shipping-select">Shipping option</label>
-    <select class="field-select" id="shipping-select">
-      <option value="uk-standard" data-cost="5">UK &middot; Standard untracked (&pound;5)</option>
-      <option value="uk-tracked"  data-cost="10">UK &middot; Tracked &amp; insured (&pound;10)</option>
-      <option value="europe"      data-cost="12">Europe &middot; Tracked &amp; insured (&pound;12)</option>
-      <option value="world"       data-cost="15">US &amp; rest of world &middot; Tracked &amp; insured (&pound;15)</option>
-    </select>
-
     <div class="order-summary">
       <div class="summary-row"><span>Print</span><span id="summary-print">&mdash;</span></div>
-      <div class="summary-row"><span>Shipping</span><span id="summary-shipping">&mdash;</span></div>
-      <div class="summary-row total"><span>Total</span><span id="summary-total">&mdash;</span></div>
+      <div class="summary-row"><span>Shipping</span><span style="color:var(--muted)">added at checkout</span></div>
     </div>
 
-    <p class="modal-note"><strong>Please note:</strong> UK standard post is untracked and uninsured. The buyer is responsible for any import duties or taxes in their country.</p>
+    <p class="field-label" style="margin-bottom:8px;">Shipping rates</p>
+    <div class="order-summary" style="margin-bottom:24px;">
+      <div class="summary-row"><span>UK standard / tracked</span><span>£5 / £10</span></div>
+      <div class="summary-row"><span>Europe tracked</span><span>£12</span></div>
+      <div class="summary-row"><span>US &amp; rest of world</span><span>£15</span></div>
+    </div>
+
+    <p class="modal-note"><strong>Please note:</strong> Shipping is added at the PayPal checkout based on your delivery address. The buyer is responsible for any import duties or taxes in their country.</p>
 
     <div class="payment-btns">
-      <button class="pay-stripe" id="order-email-btn">Order by email</button>
+      <button class="pay-stripe" id="pay-now-btn">Pay now with PayPal</button>
     </div>
 
-    <p class="modal-disclaimer">Tap above and your email app will open with the print, size and shipping pre-filled &mdash; just send it to me. I'll reply to confirm availability and send a secure payment request you can pay by card or Apple&nbsp;/&nbsp;Google&nbsp;Pay. Prints are made to order, hand-signed, and dispatched within 5&ndash;10 days. Ordering more than one? Mention it and I'll combine your postage.</p>
+    <p class="modal-disclaimer">You'll be taken to PayPal's secure checkout to pay by card, Apple&nbsp;Pay, Google&nbsp;Pay or PayPal. Prints are made to order, hand-signed, and dispatched within 5&ndash;10 days. Ordering more than one? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);">Email me</a> to combine postage.</p>
   </div>
 </div>
 
@@ -305,8 +304,9 @@ const PRINTS = [
     image: 'images/BowenSeries.jpg',
     orientation: 'portrait',
     soldOut: false,
+    paypal: '',   // ← paste Mark Bowen PayPal link here
     sizes: [
-      { label: 'A4', price: 50, runOf: 40, remaining: 40 }
+      { label: 'A4', price: 50, runOf: 30, remaining: 30 }
     ]
   },
   {
@@ -317,6 +317,7 @@ const PRINTS = [
     image: 'images/Trent.jpg',
     orientation: 'portrait',
     soldOut: false,
+    paypal: 'https://www.paypal.com/ncp/payment/9YDCPPNQQHYXG',
     sizes: [
       { label: 'A4', price: 40, runOf: 25, remaining: 25 }
     ]
@@ -329,6 +330,7 @@ const PRINTS = [
     image: 'images/Dimebag.JPG',
     orientation: 'landscape',
     soldOut: false,
+    paypal: '',   // ← paste Dimebag PayPal link here
     sizes: [
       { label: 'A4', price: 40, runOf: 25, remaining: 25 }
     ]
@@ -342,7 +344,7 @@ const PRINTS = [
    request to collect payment by card. Change the address below if
    your contact email ever changes.
    ════════════════════════════════════════════════════════════════ */
-const EMAIL = 'LulaLongArt@gmail.com';
+const EMAIL = 'contact@lulalongart.com';
 
 /* ──────────────────────────────────────────────────────────────── */
 
@@ -466,7 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('modal-title').textContent = print.title;
     document.getElementById('modal-meta').textContent =
       size.label + ' · ' + print.subtitle + ' · Hand-signed limited edition';
-    updateSummary(size.price);
+    document.getElementById('summary-print').textContent = '£' + size.price;
     document.getElementById('modal-overlay').classList.add('active');
     document.body.style.overflow = 'hidden';
     document.getElementById('modal-close').focus();
@@ -476,47 +478,27 @@ document.addEventListener('DOMContentLoaded', function() {
     document.body.style.overflow = '';
     currentPrintId = null;
   }
-  function updateSummary(printPrice) {
-    const sel = document.getElementById('shipping-select');
-    const ship = parseInt(sel.options[sel.selectedIndex].dataset.cost);
-    document.getElementById('summary-print').textContent = '£' + printPrice;
-    document.getElementById('summary-shipping').textContent = '£' + ship;
-    document.getElementById('summary-total').textContent = '£' + (printPrice + ship);
-  }
 
   document.getElementById('modal-close').addEventListener('click', closeModal);
   document.getElementById('modal-overlay').addEventListener('click', function(e) {
     if (e.target === document.getElementById('modal-overlay')) closeModal();
   });
-  document.getElementById('shipping-select').addEventListener('change', function() {
+
+  document.getElementById('pay-now-btn').addEventListener('click', function() {
     if (!currentPrintId) return;
     const print = PRINTS.find(function(p){ return p.id === currentPrintId; });
-    updateSummary(print.sizes[selectedSize[currentPrintId]].price);
-  });
-
-  document.getElementById('order-email-btn').addEventListener('click', function() {
-    if (!currentPrintId) return;
-    const print = PRINTS.find(function(p){ return p.id === currentPrintId; });
-    const size = print.sizes[selectedSize[currentPrintId]];
-    const sel = document.getElementById('shipping-select');
-    const shipLabel = sel.options[sel.selectedIndex].text.replace(/&amp;/g, '&');
-    const ship = parseInt(sel.options[sel.selectedIndex].dataset.cost);
-    const total = size.price + ship;
-
-    const subject = 'Print order: ' + print.title + ' (' + size.label + ')';
-    const body =
-      "Hi Lyndsey,\n\nI'd like to order the following print:\n\n" +
-      "Print: " + print.title + " — " + print.subtitle + "\n" +
-      "Size: " + size.label + "\n" +
-      "Price: £" + size.price + "\n" +
-      "Shipping: " + shipLabel + "\n" +
-      "Total: £" + total + "\n\n" +
-      "My delivery address:\n[please add your full postal address]\n\n" +
-      "Thank you!";
-
-    window.location.href = 'mailto:' + EMAIL +
-      '?subject=' + encodeURIComponent(subject) +
-      '&body=' + encodeURIComponent(body);
+    if (print.paypal) {
+      window.open(print.paypal, '_blank', 'noopener');
+      closeModal();
+    } else {
+      // no link yet — fall back to email
+      const size = print.sizes[selectedSize[currentPrintId]];
+      const subject = 'Print order: ' + print.title + ' (' + size.label + ')';
+      const body = "Hi Lyndsey,\n\nI'd like to order " + print.title +
+        " (" + size.label + ", £" + size.price + ").\n\nMy delivery address:\n[please add your full postal address]\n\nThank you!";
+      window.location.href = 'mailto:' + EMAIL +
+        '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+    }
   });
 
   const lightbox = document.getElementById('lightbox');
