@@ -8,14 +8,14 @@
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta property="og:title" content="Lula Long Art — Prints">
-<meta property="og:description" content="Limited edition prints by Lyndsey Longson">
+<meta property="og:description" content="Hand-signed prints by Lyndsey Longson">
 <meta property="og:image" content="images/Trent.jpg">
 <meta property="og:url" content="https://lulalongart.com/shop.html">
 <meta property="og:type" content="website">
-<meta name="description" content="Limited edition fine art prints — hand-signed by Guernsey portrait artist Lyndsey Longson">
+<meta name="description" content="Hand-signed fine art prints by Guernsey portrait artist Lyndsey Longson">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Lula Long Art — Prints">
-<meta name="twitter:description" content="Limited edition prints by Lyndsey Longson">
+<meta name="twitter:description" content="Hand-signed prints by Lyndsey Longson">
 <meta name="twitter:image" content="images/Trent.jpg">
 <title>Lula Long Art &mdash; Prints</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -203,7 +203,7 @@
 </nav>
 
 <div class="page-header">
-  <div class="gold-rule"><span>Limited Editions</span></div>
+  <div class="gold-rule"><span>Fine Art Prints</span></div>
   <h1>Fine art <em>prints.</em></h1>
   <p>Each print is produced on premium acid-free paper using HP Indigo pigment-based inks, then hand-signed by me before it ships.</p>
   <p>Printed to order, handled with care, and sent directly to you.</p>
@@ -218,12 +218,12 @@
     <div class="info-block">
       <h3>Shipping</h3>
       <ul>
-        <li>UK &middot; &pound;5 standard, untracked</li>
-        <li>UK &middot; &pound;10 tracked &amp; insured</li>
-        <li>Europe &middot; &pound;12 tracked &amp; insured</li>
-        <li>US &amp; rest of world &middot; &pound;15 tracked &amp; insured</li>
+        <li>Postage is included in the price</li>
+        <li>UK and international delivery available</li>
+        <li>Every print tracked and signed for</li>
+        <li>Sent flat in a rigid, do-not-bend mailer</li>
       </ul>
-      <p style="margin-top:14px;">Ordering more than one print? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);">Drop me an email</a> before you buy and I'll combine your postage.</p>
+      <p style="margin-top:14px;">Ordering more than one print? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);text-decoration:none;border-bottom:1px solid var(--gold-light);">Drop me an email</a> before you buy and I'll sort your postage together.</p>
     </div>
     <div class="info-block">
       <h3>What you receive</h3>
@@ -299,13 +299,13 @@ const PRINTS = [
     id: 'mark-bowen',
     title: 'Mark Bowen',
     subtitle: 'IDLES  ·  50% of profits to War Child',
-    eyebrow: 'Charity limited edition',
+    eyebrow: 'Charity print  ·  War Child',
     image: 'images/BowenSeries.jpg',
     orientation: 'portrait',
     soldOut: false,
     runOf: 30, remaining: 30,
-    priceUK: 55,   paypalUK: '',     // ← paste Mark Bowen UK (£55) PayPal link here
-    priceIntl: 70, paypalIntl: ''    // ← paste Mark Bowen International (£70) PayPal link here
+    priceUK: 55,   paypalUK: 'https://www.paypal.com/ncp/payment/RZJ73WXUJ8M2Y',
+    priceIntl: 70, paypalIntl: 'https://www.paypal.com/ncp/payment/G4AHFKUAF9T7L'
   },
   {
     id: 'trent-reznor',
@@ -316,8 +316,8 @@ const PRINTS = [
     orientation: 'portrait',
     soldOut: false,
     runOf: 25, remaining: 25,
-    priceUK: 45,   paypalUK: '',     // ← paste Trent UK (£45) PayPal link here
-    priceIntl: 60, paypalIntl: ''    // ← paste Trent International (£60) PayPal link here
+    priceUK: 45,   paypalUK: 'https://www.paypal.com/ncp/payment/953M4YVNK66HL',
+    priceIntl: 60, paypalIntl: 'https://www.paypal.com/ncp/payment/9FTGEV38UXRKN'
   },
   {
     id: 'dimebag-darrell',
@@ -328,8 +328,8 @@ const PRINTS = [
     orientation: 'landscape',
     soldOut: false,
     runOf: 25, remaining: 25,
-    priceUK: 45,   paypalUK: '',     // ← paste Dimebag UK (£45) PayPal link here
-    priceIntl: 60, paypalIntl: ''    // ← paste Dimebag International (£60) PayPal link here
+    priceUK: 45,   paypalUK: 'https://www.paypal.com/ncp/payment/YSDWS7JCP5WHL',
+    priceIntl: 60, paypalIntl: 'https://www.paypal.com/ncp/payment/LQWFMNDVCPPSL'
   }
 ];
 
@@ -359,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function() {
     window.open('https://instagram.com/lulalongart', '_blank');
   });
 
-  function printHasStock(p) { return !p.soldOut && p.remaining > 0; }
+  function printHasStock(p) { return !p.soldOut; }
 
   function renderCards() {
     const grid = document.getElementById('prints-grid');
@@ -377,15 +377,9 @@ document.addEventListener('DOMContentLoaded', function() {
           (print.focus ? 'background-position:' + print.focus + ';' : '') + '"></div>'
         : '<div class="no-image">Image coming soon</div>';
 
-      const sizeBlock = '<p class="single-size">A4  &middot;  Limited edition of ' + print.runOf + '</p>';
+      const sizeBlock = '<p class="single-size">A4  &middot;  Hand-signed, made to order</p>';
 
-      let stockHtml;
-      if (available) {
-        const lowClass = print.remaining <= 5 ? ' low' : '';
-        stockHtml = '<span class="stock-note' + lowClass + '">' + print.remaining + ' of ' + print.runOf + ' remaining</span>';
-      } else {
-        stockHtml = '<span class="stock-note">Sold out</span>';
-      }
+      let stockHtml = '';
 
       const orient = print.orientation || 'landscape';
       card.innerHTML =
@@ -434,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const print = PRINTS.find(function(p){ return p.id === printId; });
     document.getElementById('modal-title').textContent = print.title;
     document.getElementById('modal-meta').textContent =
-      'A4 · ' + print.subtitle + ' · Hand-signed limited edition';
+      'A4 · ' + print.subtitle + ' · Hand-signed, made to order';
     document.getElementById('summary-uk').textContent = '£' + print.priceUK;
     document.getElementById('summary-intl').textContent = '£' + print.priceIntl;
     document.getElementById('pay-uk-btn').innerHTML = 'Buy &middot; UK delivery &mdash; £' + print.priceUK;
