@@ -203,10 +203,10 @@
 </nav>
 
 <div class="page-header">
-  <div class="gold-rule"><span>Fine Art Prints</span></div>
+  <div class="gold-rule"><span>Shop</span></div>
   <h1>Fine art <em>prints.</em></h1>
   <p>Each print is produced on premium acid-free paper using HP Indigo pigment-based inks, then hand-signed by me before it ships.</p>
-  <p>Printed to order, handled with care, and sent directly to you.</p>
+  <p>Handled with care and sent directly to you.</p>
 </div>
 
 <section class="shop">
@@ -236,7 +236,7 @@
     </div>
     <div class="info-block">
       <h3>Good to know</h3>
-      <p>Prints are made to order, so please allow 5&ndash;10 days before dispatch. The buyer is responsible for any import duties or taxes that apply in their country. All sales are final on made-to-order prints.</p>
+      <p>Please allow a few days for dispatch. The buyer is responsible for any import duties or taxes that apply in their country. All sales are final.</p>
       <p style="margin-top:14px;">The preview images on this page are intentionally low resolution to protect against copying. Your printed piece will be considerably crisper and richer in detail.</p>
     </div>
   </div>
@@ -262,7 +262,7 @@
       <button class="pay-stripe" id="pay-intl-btn" style="background:transparent; border:1px solid var(--gold); color:var(--gold);">Buy &middot; International delivery</button>
     </div>
 
-    <p class="modal-disclaimer">You'll be taken to PayPal's secure checkout to pay by card, Apple&nbsp;Pay, Google&nbsp;Pay or PayPal. Prints are made to order, hand-signed, and dispatched within 5&ndash;10 days. Ordering more than one? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);">Email me</a> to combine postage.</p>
+    <p class="modal-disclaimer">You'll be taken to PayPal's secure checkout to pay by card, Apple&nbsp;Pay, Google&nbsp;Pay or PayPal. Prints are hand-signed and dispatched promptly. Ordering more than one? <a href="mailto:contact@lulalongart.com" style="color:var(--gold);">Email me</a> to combine postage.</p>
   </div>
 </div>
 
@@ -377,7 +377,7 @@ document.addEventListener('DOMContentLoaded', function() {
           (print.focus ? 'background-position:' + print.focus + ';' : '') + '"></div>'
         : '<div class="no-image">Image coming soon</div>';
 
-      const sizeBlock = '<p class="single-size">A4  &middot;  Hand-signed, made to order</p>';
+      const sizeBlock = '<p class="single-size">A4  &middot;  Hand-signed</p>';
 
       let stockHtml = '';
 
@@ -428,7 +428,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const print = PRINTS.find(function(p){ return p.id === printId; });
     document.getElementById('modal-title').textContent = print.title;
     document.getElementById('modal-meta').textContent =
-      'A4 · ' + print.subtitle + ' · Hand-signed, made to order';
+      'A4 · ' + print.subtitle + ' · Hand-signed';
     document.getElementById('summary-uk').textContent = '£' + print.priceUK;
     document.getElementById('summary-intl').textContent = '£' + print.priceIntl;
     document.getElementById('pay-uk-btn').innerHTML = 'Buy &middot; UK delivery &mdash; £' + print.priceUK;
