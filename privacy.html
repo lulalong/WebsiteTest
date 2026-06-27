@@ -7,12 +7,13 @@
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Commission pricing for original pastel and coloured pencil portraits by Lyndsey Longson, Lula Long Art, Guernsey">
-<title>Lula Long Art &mdash; Commissions</title>
+<meta name="robots" content="noindex">
+<title>Lula Long Art &mdash; Privacy Notice</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
 <style>
+
   :root {
     --black: #0a0807; --deep: #110e0c; --charcoal: #1c1714; --warm-mid: #2e2723;
     --ash: #4a3f38; --muted: #7a6a60; --pale: #c4b0a2; --cream: #e8ddd4;
@@ -22,6 +23,8 @@
   html { scroll-behavior: smooth; }
   body { background: var(--black); color: var(--cream); font-family: 'Jost', sans-serif; font-weight: 300; font-size: 18px; line-height: 1.7; overflow-x: hidden; }
   body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: 0.45; }
+
+  /* ── NAV (matches index/shop) ── */
   nav { position: fixed; top: 0; left: 0; right: 0; z-index: 200; display: flex; align-items: center; justify-content: space-between; padding: 14px 48px; background: var(--black); border-bottom: 1px solid var(--warm-mid); transition: box-shadow 0.4s; }
   nav.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.8); }
   .nav-logo { display: flex; align-items: center; gap: 16px; text-decoration: none; cursor: pointer; }
@@ -35,60 +38,52 @@
   .nav-links a::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 1px; background: var(--gold); transition: width 0.3s; }
   .nav-links a:hover { color: var(--gold); }
   .nav-links a:hover::after { width: 100%; }
-  .nav-links a.active { color: var(--gold); }
-  .nav-links a.active::after { width: 100%; }
   .nav-burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
   .nav-burger span { display: block; width: 24px; height: 1px; background: var(--pale); transition: all 0.3s; }
   .nav-open .nav-burger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
   .nav-open .nav-burger span:nth-child(2) { opacity: 0; }
   .nav-open .nav-burger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+  /* ── PAGE HEADER ── */
   .page-header { margin-top: 73px; padding: 72px 56px 48px; background: var(--deep); border-bottom: 1px solid var(--warm-mid); }
   .gold-rule { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
   .gold-rule::before { content: ''; display: block; width: 28px; height: 1px; background: var(--gold); }
   .gold-rule span { font-size: 1rem; letter-spacing: 0.38em; text-transform: uppercase; color: var(--gold); }
   .page-header h1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 4vw, 3.8rem); font-weight: 300; line-height: 1.05; color: var(--white); margin-bottom: 18px; }
   .page-header h1 em { font-style: italic; color: var(--gold-light); }
-  .page-header p { color: var(--pale); font-size: 1rem; line-height: 1.9; max-width: 560px; }
-  .pricing { max-width: 720px; margin: 0 auto; padding: 56px 40px 24px; }
-  .subtitle { text-align: center; font-style: italic; color: var(--gold); font-family: 'Cormorant Garamond', serif; font-size: 1.35rem; margin-bottom: 44px; }
-  table { width: 100%; border-collapse: collapse; }
-  thead th { font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); font-weight: 300; padding-bottom: 20px; vertical-align: bottom; text-align: center; line-height: 1.4; }
-  thead th.size-col { text-align: left; color: var(--muted); }
-  thead th .num { display: block; font-size: 0.95rem; color: var(--cream); margin-bottom: 2px; }
-  tbody td { padding: 24px 6px; text-align: center; border-top: 1px solid var(--warm-mid); }
-  tbody td.size-label { text-align: left; font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 300; color: var(--cream); white-space: nowrap; }
-  .price { font-family: 'Cormorant Garamond', serif; font-size: 1.8rem; font-weight: 300; color: var(--white); }
-  .empty { color: var(--ash); font-size: 1.3rem; }
-  .footnote { max-width: 720px; margin: 0 auto; padding: 32px 40px 16px; border-top: 1px solid var(--warm-mid); text-align: center; color: var(--muted); font-size: 0.95rem; line-height: 1.9; }
-  .footnote strong { color: var(--gold); font-weight: 300; }
-  .cta { text-align: center; padding: 8px 40px 72px; }
-  .cta a { display: inline-block; padding: 14px 38px; background: var(--gold); color: var(--black); font-size: 0.82rem; letter-spacing: 0.25em; text-transform: uppercase; text-decoration: none; transition: background 0.3s, transform 0.2s; }
-  .cta a:hover { background: var(--gold-light); transform: translateY(-1px); }
-  footer { background: var(--deep); padding: 36px 56px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-top: 1px solid var(--warm-mid); }
-  .footer-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-  .footer-logo img { width: 32px; height: auto; }
+  .page-header p { color: var(--pale); font-size: 1rem; line-height: 1.9; max-width: 620px; }
+
+  /* ── BODY CONTENT ── */
+  main { max-width: 720px; margin: 0 auto; padding: 56px 56px 96px; }
+  main h2 { font-family: 'Cormorant Garamond', serif; font-weight: 400; font-size: 1.6rem; color: var(--white); margin: 48px 0 16px; }
+  main h2:first-child { margin-top: 0; }
+  main p { color: var(--pale); font-size: 0.98rem; line-height: 1.85; margin-bottom: 14px; }
+  main ul { color: var(--pale); font-size: 0.98rem; line-height: 1.85; margin: 0 0 14px 1.2em; }
+  main li { margin-bottom: 6px; }
+  main a { color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold-light); }
+  main a:hover { color: var(--gold-light); }
+  main .updated { color: var(--muted); font-size: 0.84rem; letter-spacing: 0.05em; margin-top: 8px; }
+  main strong { color: var(--cream); font-weight: 400; }
+
+  footer { padding: 40px 56px; border-top: 1px solid var(--warm-mid); display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+  .footer-logo { display: flex; align-items: center; gap: 10px; cursor: pointer; text-decoration: none; }
+  .footer-logo img { width: 32px; height: auto; object-fit: contain; filter: drop-shadow(0 0 5px rgba(196,154,90,0.35)); }
   .footer-logo-name { font-family: 'Jost', sans-serif; font-size: 0.92rem; font-weight: 300; letter-spacing: 0.22em; text-transform: uppercase; color: var(--pale); }
-  .footer-copy { font-size: 0.84rem; letter-spacing: 0.08em; color: var(--ash); }
-  .footer-social { display: flex; gap: 22px; }
-  .footer-social a { font-size: 0.84rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.3s; cursor: pointer; }
-  .footer-social a:hover { color: var(--gold); }
-  @media (max-width: 900px) {
-    nav { padding: 14px 24px; }
+  .footer-copy { color: var(--muted); font-size: 0.84rem; }
+
+  @media (max-width: 700px) {
+    nav { padding: 14px 20px; }
     .nav-links { display: none; flex-direction: column; gap: 0; position: absolute; top: 100%; left: 0; right: 0; background: var(--black); border-bottom: 1px solid var(--warm-mid); padding: 8px 0; }
     .nav-links.open { display: flex; }
     .nav-links li a { display: block; padding: 12px 24px; border-bottom: 1px solid var(--warm-mid); font-size: 0.92rem; }
     .nav-burger { display: flex; }
     .page-header { padding: 56px 24px 36px; }
-    .pricing { padding: 40px 20px 16px; }
-    tbody td.size-label { font-size: 1.2rem; }
-    .price { font-size: 1.4rem; }
-    thead th { font-size: 0.62rem; }
-    footer { flex-direction: column; align-items: flex-start; padding: 28px 24px; }
+    main { padding: 40px 24px 72px; }
   }
-  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 </style>
 </head>
 <body>
+
 <nav id="main-nav">
   <a class="nav-logo" href="index.html">
     <img src="images/logo.png" alt="Lula Long Art">
@@ -101,60 +96,71 @@
     <li><a href="index.html">Home</a></li>
     <li><a href="gallery.html">Gallery</a></li>
     <li><a href="shop.html">Prints</a></li>
-    <li><a href="commissions.html" class="active">Commissions</a></li>
+    <li><a href="commissions.html">Commissions</a></li>
     <li><a href="index.html#about">About</a></li>
     <li><a href="index.html#contact">Contact</a></li>
   </ul>
-  <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
 <div class="page-header">
-  <div class="gold-rule"><span>Commissions</span></div>
-  <h1>Your portrait, <em>made by hand.</em></h1>
-  <p>Original pastel and coloured pencil portraits of the people, pets and musicians you love, created with care, signed, and ready to treasure.</p>
+  <div class="gold-rule"><span>Privacy</span></div>
+  <h1>Privacy <em>notice.</em></h1>
+  <p>How your information is collected and used when you buy a print, commission a piece, or get in touch.</p>
 </div>
-<section class="pricing">
-  <p class="subtitle">Pastel &amp; coloured pencil, full colour</p>
-  <table>
-    <thead>
-      <tr>
-        <th class="size-col">Size</th>
-        <th><span class="num">1</span>Subject</th>
-        <th><span class="num">2</span>Subjects</th>
-        <th><span class="num">3</span>Subjects</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr><td class="size-label">8 &times; 10&Prime;</td><td class="price">&pound;250</td><td class="empty">&mdash;</td><td class="empty">&mdash;</td></tr>
-      <tr><td class="size-label">10 &times; 12&Prime;</td><td class="price">&pound;300</td><td class="price">&pound;375</td><td class="empty">&mdash;</td></tr>
-      <tr><td class="size-label">A3</td><td class="price">&pound;350</td><td class="price">&pound;425</td><td class="price">&pound;500</td></tr>
-    </tbody>
-  </table>
-</section>
-<p class="footnote">
-  All prices are a guide. <strong>Greyscale and background treatments are priced differently.</strong><br>
-  A final price is confirmed once we have discussed your vision and agreed a plan.<br>
-  To reserve your place in my commission queue, a <strong>50% deposit</strong> is required, with the balance due on completion before dispatch.<br>
-  Each finished piece is mounted and presented in cellophane to protect it. Framing is not included.
-</p>
-<div class="cta">
-  <a href="mailto:contact@lulalongart.com?subject=Commission%20enquiry">Enquire about a commission</a>
-</div>
+
+<main>
+
+  <h2>Who I am</h2>
+  <p>This site is run by <strong>Lyndsey Longson</strong>, trading as Lula Long Art, a sole trader based in Guernsey, Channel Islands. For any question about this notice or your information, email <a href="mailto:contact@lulalongart.com">contact@lulalongart.com</a>.</p>
+
+  <h2>If you buy a print</h2>
+  <p>Print sales are processed entirely through PayPal. When you check out, PayPal collects your name, delivery address, and payment details directly. This site never sees or stores your card details.</p>
+  <p>I do see your name and delivery address through PayPal, because I need them to package, label, and post your print, complete your Certificate of Authenticity, and keep accounting records of the sale. I don't add this information anywhere else, and I don't use it for marketing.</p>
+  <p>PayPal acts as a separate data controller for the checkout itself. Their handling of your information is governed by <a href="https://www.paypal.com/uk/legalhub/privacy-full" target="_blank" rel="noopener">PayPal's own privacy policy</a>, not this one.</p>
+
+  <h2>If you commission a piece</h2>
+  <p>For commissions, I collect your name, email, delivery address, and any details you give me about the artwork directly, by email or through an invoice. This is used to agree the commission, create your invoice and certificate, and arrange delivery.</p>
+
+  <h2>What I use your information for</h2>
+  <ul>
+    <li>Fulfilling your order or commission (printing, packaging, posting)</li>
+    <li>Producing your invoice and Certificate of Authenticity</li>
+    <li>Meeting my legal bookkeeping and tax obligations</li>
+    <li>Responding if you contact me with a question</li>
+  </ul>
+  <p>I don't sell, rent, or share your information with anyone beyond what's needed to deliver your order (for example, Royal Mail or Guernsey Post for postage).</p>
+
+  <h2>How long I keep it</h2>
+  <p>I keep order and invoice records for as long as required for tax and accounting purposes. Outside of that, I don't keep customer details longer than necessary to complete your order.</p>
+
+  <h2>Your rights</h2>
+  <p>You can ask me at any time what information I hold about you, ask me to correct it, or ask me to delete it (where I'm not required to keep it for tax purposes). Just email <a href="mailto:contact@lulalongart.com">contact@lulalongart.com</a>.</p>
+  <p>I'm registered with Guernsey's Office of the Data Protection Authority (ODPA), the independent regulator for data protection in the Bailiwick of Guernsey. If you have a concern I haven't resolved, you can contact them at <a href="https://www.odpa.gg" target="_blank" rel="noopener">odpa.gg</a>.</p>
+
+  <h2>Cookies</h2>
+  <p>This site doesn't use cookies, analytics, or tracking scripts.</p>
+
+  <p class="updated">Last updated: June 2026</p>
+
+</main>
+
 <footer>
   <a class="footer-logo" href="index.html">
     <img src="images/logo.png" alt="Lula Long Art">
     <span class="footer-logo-name">Lula Long Art</span>
   </a>
   <p class="footer-copy">&copy; <span id="year"></span> Lula Long Art &middot; Guernsey, Channel Islands</p>
-  <div class="footer-social"><a id="footer-instagram">Instagram</a> <a href="privacy.html">Privacy</a></div>
 </footer>
+
 <script>
-  window.addEventListener('scroll', function(){ document.getElementById('main-nav').classList.toggle('scrolled', window.scrollY>40); });
-  document.getElementById('nav-burger').addEventListener('click', function(){
-    document.getElementById('main-nav').classList.toggle('nav-open');
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('nav-burger').addEventListener('click', function() {
     document.getElementById('nav-links').classList.toggle('open');
   });
-  document.getElementById('footer-instagram').addEventListener('click', function(){ window.open('https://instagram.com/lulalongart','_blank'); });
-  document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
