@@ -25,7 +25,7 @@
 
   :root {
     --black: #0a0807; --deep: #110e0c; --charcoal: #1c1714; --warm-mid: #2e2723;
-    --ash: #4a3f38; --muted: #7a6a60; --pale: #c4b0a2; --cream: #e8ddd4;
+    --ash: #4a3f38; --muted: #a08f83; --pale: #c4b0a2; --cream: #e8ddd4;
     --gold: #c49a5a; --gold-light: #d4aa6a; --white: #f2ece6;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -131,8 +131,8 @@
   .summary-row.total { color: var(--white); padding-top: 12px; margin-top: 6px; border-top: 1px solid var(--warm-mid); margin-bottom: 0; }
   .summary-row.total span:last-child { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; }
 
-  .modal-note { font-size: 0.8rem; color: var(--muted); line-height: 1.7; margin-bottom: 26px; }
-  .modal-note strong { color: var(--pale); font-weight: 400; }
+  .modal-note { font-size: 0.85rem; color: var(--muted); line-height: 1.8; margin-bottom: 26px; }
+  .modal-note strong { color: var(--white); font-weight: 400; }
 
   .payment-btns { display: flex; flex-direction: column; gap: 12px; }
   .pay-stripe { background: var(--gold); color: var(--black); border: none; font-family: 'Jost', sans-serif; font-size: 0.82rem; font-weight: 400; letter-spacing: 0.25em; text-transform: uppercase; padding: 15px; cursor: pointer; transition: background 0.3s; }
@@ -141,7 +141,7 @@
   .pay-paypal:hover { opacity: 0.88; }
   .pay-divider { display: flex; align-items: center; gap: 14px; font-size: 0.72rem; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
   .pay-divider::before, .pay-divider::after { content: ''; flex: 1; height: 1px; background: var(--warm-mid); }
-  .modal-disclaimer { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--warm-mid); font-size: 0.76rem; color: var(--muted); line-height: 1.7; }
+  .modal-disclaimer { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--warm-mid); font-size: 0.8rem; color: var(--muted); line-height: 1.8; }
 
   /* ── LIGHTBOX ── */
   .lightbox-overlay { display: none; position: fixed; inset: 0; z-index: 1100; background: rgba(0,0,0,0.93); cursor: zoom-out; align-items: center; justify-content: center; }
@@ -250,7 +250,7 @@
     <h2 id="modal-title"></h2>
     <p class="modal-meta" id="modal-meta"></p>
 
-    <p class="field-label" style="margin-bottom:12px;">Choose your delivery region — postage is included in the price.</p>
+    <p class="field-label" style="margin-bottom:12px;">Choose your delivery region, postage is included in the price.</p>
     <div class="order-summary" style="margin-bottom:24px;">
       <div class="summary-row"><span>United Kingdom</span><span id="summary-uk">&mdash;</span></div>
       <div class="summary-row"><span>Europe &amp; rest of world</span><span id="summary-intl">&mdash;</span></div>
